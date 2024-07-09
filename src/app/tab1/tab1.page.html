@@ -1,17 +1,28 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="">
     <ion-title>
-      Tab 1
+      <ion-icon name="radio-outline"></ion-icon>
+      Call Api App
     </ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content class="ion-padding" [fullscreen]="true">
+  <ion-item *ngIf="isLoading">
+    <ion-label>รอสักครู่...</ion-label>
+    <ion-spinner name="circular"></ion-spinner>
+  </ion-item>
+  <ion-item color="" *ngFor="let item of users">
+    <ion-avatar>
+      <img src="../../assets/img/user.png" alt="">
+    </ion-avatar>
+    <ion-label class="ion-padding">
+      <h2>Title :{{ item.title }}</h2>
+      <ion-badge>ID : {{ item.id }}</ion-badge>
+    </ion-label>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-button color="success" slot="end" *ngIf="item.completed === true">{{ item.completed }}</ion-button>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <ion-button color="danger" slot="end" *ngIf="item.completed === false">{{ item.completed }}</ion-button>
+  </ion-item>
+
 </ion-content>
